@@ -206,7 +206,7 @@ async function seed() {
 // everything is added in one transaction, so a failure leaves the database empty instead of half filled
 async function run({ reset } = {}) {
   if (reset) await wipe()
-  await db.tx(() => seed())
+    await db.tx(() => seed(), { timeout: 600000 })
 }
 
 module.exports = { seed, run, wipe }
