@@ -25,6 +25,8 @@ const adapter = new PrismaMariaDb({
   password: decodeURIComponent(url.password),
   database: url.pathname.replace(/^\//, ''),
   connectionLimit: Number(process.env.DB_POOL) || 10,
+  connectTimeout: 30000,
+  acquireTimeout: 30000,
   allowPublicKeyRetrieval: true,
   timezone: '+00:00', // dates are kept exactly as written, no timezone shifting
   // online databases (TiDB Cloud, Aiven...) only accept secure connections: set DB_SSL=true in .env or in the host's settings
